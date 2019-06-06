@@ -2,15 +2,15 @@ const express = require("express");
 const helmet = require("helmet");
 const server = express();
 
-// //routes
-// const projectRoutes = require("../routes/projectRoutes.js");
-// const actionRoutes = require("../routes/actionRoutes.js");
+//routes
+const userRoutes = require("../users/userRoutes.js");
+const registerRoutes = require("../users/registerRoutes.js");
 
 server.use(helmet());
 server.use(express.json());
 
-// server.use("/projects", projectRoutes);
-// server.use("/actions", actionRoutes);
+server.use("/api/users", userRoutes);
+server.use("/api/register", registerRoutes);
 
 // Checking Route
 server.get("/", (req, res) => {
