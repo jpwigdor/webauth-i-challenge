@@ -4,16 +4,18 @@ const knexConfig = require("../knexfile.js");
 const db = knex(knexConfig.development);
 const bcrypt = require("bcryptjs");
 
-const Register = require("./userRoutes.js");
+const Register = require("./users-model.js");
 
-router.post("/api/register", (req, res) => {
+router.post("/", (req, res) => {
   let user = req.body;
   // check for username and password
-  console.log(user);
+
+  // console.log(user);
+
   const hash = bcrypt.hashSync(user.password, 10); // 2^10 rounds
   // password -> hash it -> hash = 1 round -> hash it -> hash = 2 rounds
   // has the password
-  user.password = hash; // <<<<<<<<<<<<<<<<<<<<<<
+  user.password = hash;
 
   Register.add(user)
     .then(saved => {
